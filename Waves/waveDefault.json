@@ -1,0 +1,50 @@
+{
+    "Waves": {
+        "Wave0": {
+            "Spawn Time": 3,
+            "Wave Time": 30,
+            "Wave Enemies": 10,
+
+            "Enemies": [{
+                    "Enemy Name": "Dum Enemy.tscn",
+                    "Weight": 3
+                },
+                {
+                    "Enemy Name": "Even Dumer Enemy.tscn",
+                    "Weight": 1
+                }
+            ],
+
+            "Weapons Drop": [{
+                "Cool Weapon": { "Weight": 1 },
+                "Even Cooler Weapon": { "Weight": 1 },
+                "Ultra Cool Weapon": { "Weight": 1 }
+            }]
+        },
+        "Wave1": [{
+            "Spawn Time": 3,
+            "Wave Time": 30,
+            "Wave Enemies": 10,
+            "Enemies": [{
+                    "Enemy Name": "Dum Enemy.tscn",
+                    "Weight": 3
+                },
+                {
+                    "Enemy Name": "Even Dumer Enemy.tscn",
+                    "Weight": 1
+                }
+            ],
+            "Weapons Drop": [{
+                "Cool Weapon": {
+                    "Weight": 1
+                },
+                "Even Cooler Weapon": {
+                    "Weight": 1
+                },
+                "Ultra Cool Weapon": {
+                    "Weight": 1
+                }
+            }]
+        }]
+    }
+}

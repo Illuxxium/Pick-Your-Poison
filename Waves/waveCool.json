@@ -1,0 +1,24 @@
+{
+    "Spawn Time": 3,
+    "Enemies": {
+        "Dum Enemy": {
+            "Weight": 3
+        },
+        "Even Dumer Enemy": {
+            "Weight": 1
+        }
+    },
+    "Wave Time": 30,
+    "Wave Enemies": 10,
+    "Weapons Drop": {
+        "Cool Weapon": {
+            "Weight": 1
+        },
+        "Even Cooler Weapon": {
+            "Weight": 1
+        },
+        "Ultra Cool Weapon": {
+            "Weight": 1
+        }
+    }
+}

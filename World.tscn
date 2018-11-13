@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Graphics/Backgrounds/simplebackground.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -70,6 +70,34 @@ var time = 0
 
 func _process(delta: float) -> void:
 	time += delta"
+
+[sub_resource type="GDScript" id=4]
+
+script/source = "extends Node2D
+
+export(String, FILE, \"*.json\") var waves: String = \"res://Waves/waveDefault.json\"
+var enemiesDir : String = \"res://Scenes/Enemies/\"
+var weaponsDir : String = \"res://Scenes/SpawnWeapons/\"
+var currentWave: int = 0
+var maxWave: int
+var isEndless: bool = false
+var spawnTime: int = 0
+var waveDicts: Dictionary
+var currentWaveDict: Dictionary
+
+func _ready() -> void:
+	var _currWave = File.new()
+	_currWave.open(waves, File.READ)
+
+	var dict = parse_json(_currWave.get_as_text())
+	if(typeof(dict) == TYPE_DICTIONARY):
+		waveDicts = dict
+	print(\"oof\", waveDicts[\"Waves\"][\"Wave0\"])
+	print(\"%s%s\" % [enemiesDir, waveDicts[\"Waves\"][\"Wave0\"][\"Enemies\"][0][\"Enemy Name\"]])
+	var oof: PackedScene = load(\"%s%s\" % [enemiesDir, waveDicts[\"Waves\"][\"Wave0\"][\"Enemies\"][0][\"Enemy Name\"]])
+	var _oof = oof.instance()
+	$\"Enemies\".add_child(_oof, true)
+	_currWave.close()"
 
 [node name="World" type="Node2D"]
 
@@ -159,7 +187,23 @@ v_frames = 1
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 960, 540 )
 
-[node name="Dum Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 100, 540 )
-rotation = 1.5708
+[node name="Game Runner" type="Node2D" parent="."]
+script = SubResource( 4 )
+waves = "res://Waves/waveDefault.json"
+
+[node name="Enemies" type="Node2D" parent="Game Runner"]
+
+[node name="Dum Enemy" parent="Game Runner/Enemies" instance=ExtResource( 3 )]
+position = Vector2( 558.762, 387.094 )
+
+[node name="Weapon Spawners" type="Node2D" parent="Game Runner"]
+
+[node name="1" type="Position2D" parent="Game Runner/Weapon Spawners"]
+position = Vector2( 600, 540 )
+
+[node name="2" type="Position2D" parent="Game Runner/Weapon Spawners"]
+position = Vector2( 1320, 540 )
+
+[node name="3" type="Position2D" parent="Game Runner/Weapon Spawners"]
+position = Vector2( 960, 540 )
 

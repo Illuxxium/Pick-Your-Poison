@@ -16,7 +16,7 @@ func _ready():
 	tween = Tween.new()
 	add_child(tween)
 	tween.start()
-
+	$Area2D/CollisionPolygon2D.disabled
 #warning-ignore:unused_argument
 func _physics_process(delta: float) -> void:
 	if(Input.is_key_pressed(KEY_F11) && !f11down):
@@ -138,18 +138,22 @@ func spawnWeapons():
 func _unhandled_input(event: InputEvent) -> void:
 #	print(event)
 	if(event.is_action_pressed(\"fire_main\")):
+		$\"Main Weapon Spawner\".get_child(0).canFire = true
 		$\"Main Weapon Spawner\".get_child(0).startFire()
 	if(event.is_action_released(\"fire_main\")):
+		$\"Main Weapon Spawner\".get_child(0).canFire = false
 		$\"Main Weapon Spawner\".get_child(0).endFire()
 	if(event.is_action_pressed(\"fire_alt\")):
+		$\"Alt Weapon Spawner\".get_child(0).canFire = true
 		$\"Alt Weapon Spawner\".get_child(0).startFire()
 	if(event.is_action_released(\"fire_alt\")):
+		$\"Alt Weapon Spawner\".get_child(0).canFire = false
 		$\"Alt Weapon Spawner\".get_child(0).endFire()"
 
 [node name="Player" type="KinematicBody2D"]
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
+collision_layer = 0
+collision_mask = 0
 collision/safe_margin = 0.08
 motion/sync_to_physics = false
 script = SubResource( 1 )
@@ -202,6 +206,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision_mask = 9
 audio_bus_override = false
 audio_bus_name = "Master"
 

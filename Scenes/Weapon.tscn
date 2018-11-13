@@ -7,6 +7,7 @@
 
 script/source = "extends Node2D
 export var projectile: PackedScene
+var canFire: bool = false
 
 #warning-ignore:unused_argument
 func _physics_process(delta: float) -> void:
@@ -21,6 +22,8 @@ func endFire():
 	$FireTimer.one_shot = true
 
 func fire():
+	if(!canFire):
+		return
 #warning-ignore:unused_variable
 #warning-ignore:void_assignment
 	var proj = projectile.instance()
