@@ -1,10 +1,26 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Laser.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Graphics/PNG/Default size/shotLarge.png" type="Texture" id=2]
 
-[node name="Basic Player Laser" index="0" instance=ExtResource( 1 )]
+[sub_resource type="GDScript" id=1]
 
-[node name="Sprite" parent="Node2D" index="1"]
-texture = ExtResource( 2 )
+script/source = "extends KinematicBody2D
+
+#warning-ignore:unused_class_variable
+export(int, 0, 1000) var damage: float = 20
+export(int, 0, 1000) var speed = 200
+
+#warning-ignore:unused_argument
+func _on_Laser_body_entered(body: Node) -> void:
+	print(\"AJDIOJFOSD\") # Replace with function body.
+
+func _physics_process(delta: float) -> void:
+	move_and_slide(Vector2(1, 0).rotated(deg2rad(rotation_degrees)) * speed)
+
+func _on_Timer_timeout() -> void:
+	queue_free()"
+
+[node name="Basic Player Laser" instance=ExtResource( 1 )]
+script = SubResource( 1 )
+speed = 200
 
