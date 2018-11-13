@@ -1,0 +1,1 @@
+{"default_conversation":"Node0","nodes":{"Node0":{"Line0":"ssss","type":"Conversation"},"Node1":{"Line0":"Henlo!","Size":1,"type":"Speech"}},"sc":{"Node0":{"0":{"to":"Node1","to_slot":0}}}}
