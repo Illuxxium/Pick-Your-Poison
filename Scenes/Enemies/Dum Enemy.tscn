@@ -1,9 +1,90 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Enemy Weapons/Dum Emeny Weapon.tscn" type="PackedScene" id=2]
 
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends KinematicBody2D
+
+export var movementSpeed: float = 300
+var targetRotation: float
+var tween
+
+#func _ready():
+#	tween = Tween.new()
+#	add_child(tween)
+#	tween.start()
+
+#warning-ignore:unused_argument
+#func _physics_process(delta: float) -> void:
+#	var movementVector: Vector2 = Vector2()
+#
+#	movementVector.y -= Input.get_action_strength(\"move_up\")
+#	movementVector.y += Input.get_action_strength(\"move_down\")
+#	movementVector.x -= Input.get_action_strength(\"move_left\")
+#	movementVector.x += Input.get_action_strength(\"move_right\")
+#
+#	move_and_slide(movementVector.normalized() * movementSpeed)
+#
+#	match(Vector2(ceil(movementVector.x), ceil(movementVector.y))):
+#		Vector2(0, -1):
+#			if(rotation_degrees >= -180):
+#				targetRotation = 0
+#			else:
+#				targetRotation = -360
+#		Vector2(1, -1):
+#			if(rotation_degrees > -135):
+#				targetRotation = 45
+#			else:
+#				targetRotation = -315
+#		Vector2(1, 0):
+#			if(rotation_degrees > -90):
+#				targetRotation = 90
+#			else:
+#				targetRotation = -270
+#		Vector2(1, 1):
+#			if(rotation_degrees > -45):
+#				targetRotation = 135
+#			else:
+#				targetRotation = -225
+#		Vector2(0, 1):
+#			if(rotation_degrees > 0):
+#				targetRotation = 180
+#			else:
+#				targetRotation = -180
+#		Vector2(-1, -1):
+#			if(rotation_degrees > 45):
+#				targetRotation = 315
+#			else:
+#				targetRotation = -45
+#		Vector2(-1,0):
+#			if(rotation_degrees > 90):
+#				targetRotation = 270
+#			else:
+#				targetRotation = -90
+#		Vector2(-1, 1):
+#			if(rotation_degrees > 135):
+#				targetRotation = 225
+#			else:
+#				targetRotation = -135
+#
+#	tween.interpolate_property(self, \"rotation_degrees\", null, targetRotation, .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#	rotation_degrees = fmod(rotation_degrees, 360)
+
+func _on_Area2D_area_entered(area: Area2D) -> void:
+	print(area)
+	area.get_parent().queue_free()"
+
 [node name="Dum Enemy" instance=ExtResource( 1 )]
+collision_layer = 2
+collision_mask = 2
+script = SubResource( 1 )
+movementSpeed = null
+
+[node name="Area2D" parent="." index="3"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="Weapon Manager" parent="." index="4"]
 mainWeapon = ExtResource( 2 )
