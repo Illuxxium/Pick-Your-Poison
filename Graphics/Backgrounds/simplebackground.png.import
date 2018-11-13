@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/editor.png-1ba8651e3d67c7c3d902a3d09be5cecc.stex"
+path="res://.import/simplebackground.png-3dda28958c7d000dd738294deea3d796.stex"
 
 [deps]
 
-source_file="res://editor.png"
-dest_files=[ "res://.import/editor.png-1ba8651e3d67c7c3d902a3d09be5cecc.stex" ]
+source_file="res://Graphics/Backgrounds/simplebackground.png"
+dest_files=[ "res://.import/simplebackground.png-3dda28958c7d000dd738294deea3d796.stex" ]
 
 [params]
 
