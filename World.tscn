@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Graphics/Backgrounds/simplebackground.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Enemies/Dum Enemy.tscn" type="PackedScene" id=3]
 
 [sub_resource type="StyleBoxTexture" id=1]
 
@@ -79,25 +78,85 @@ export(String, FILE, \"*.json\") var waves: String = \"res://Waves/waveDefault.j
 var enemiesDir : String = \"res://Scenes/Enemies/\"
 var weaponsDir : String = \"res://Scenes/SpawnWeapons/\"
 var currentWave: int = 0
-var maxWave: int
+#var maxWave: int
 var isEndless: bool = false
 var spawnTime: int = 0
+var waveTime: int = 0
+var waveEnemies: int = 0
+var enemiesArray: Array
+var nodeEnemiesArray: Array
+var weaponDropsArray: Array
+var nodeWeaponDropsArray: Array
+
 var waveDicts: Dictionary
 var currentWaveDict: Dictionary
 
 func _ready() -> void:
+	resetWaves()
+	var oof: Node2D = getRandomEnemy().instance()
+	$Enemies.add_child(oof)
+	oof.transform.origin = Vector2(200, -200)
+#	print(\"oof\", waveDicts[\"Waves\"][\"Wave0\"])
+#	print(\"%s%s\" % [enemiesDir, waveDicts[\"Waves\"][\"Wave0\"][\"Enemies\"][0][\"Enemy Name\"]])
+#	var oof: PackedScene = load(\"%s%s\" % [enemiesDir, waveDicts[\"Waves\"][\"Wave0\"][\"Enemies\"][0][\"Enemy Name\"]])
+#	var _oof = oof.instance()
+#	$\"Enemies\".add_child(_oof, true)
+
+func resetWaves():
+	currentWave = 0
+	isEndless = false
+
 	var _currWave = File.new()
 	_currWave.open(waves, File.READ)
 
 	var dict = parse_json(_currWave.get_as_text())
 	if(typeof(dict) == TYPE_DICTIONARY):
-		waveDicts = dict
-	print(\"oof\", waveDicts[\"Waves\"][\"Wave0\"])
-	print(\"%s%s\" % [enemiesDir, waveDicts[\"Waves\"][\"Wave0\"][\"Enemies\"][0][\"Enemy Name\"]])
-	var oof: PackedScene = load(\"%s%s\" % [enemiesDir, waveDicts[\"Waves\"][\"Wave0\"][\"Enemies\"][0][\"Enemy Name\"]])
-	var _oof = oof.instance()
-	$\"Enemies\".add_child(_oof, true)
-	_currWave.close()"
+		waveDicts = dict[\"Waves\"]
+		currentWaveDict = waveDicts[\"Wave0\"]
+
+	_currWave.close()
+	getNextWave(true)
+
+func getNextWave(isWaveZero: bool = false):
+	if(isWaveZero):
+		genCurrentWaveData()
+		return
+	if(currentWave >= len(waveDicts) -1):
+		isEndless = true
+	else:
+		currentWave += 1
+		genCurrentWaveData()
+
+func genCurrentWaveData():
+	spawnTime = currentWaveDict[\"Spawn Time\"]
+	waveTime = currentWaveDict[\"Wave Time\"]
+	waveEnemies = currentWaveDict[\"Wave Enemies\"]
+
+	enemiesArray = currentWaveDict[\"Enemies\"]
+	loadEnemies()
+	weaponDropsArray = currentWaveDict[\"Weapon Drops\"]
+	loadWeapons()
+
+func loadEnemies():
+	nodeEnemiesArray = []
+	for enemy in enemiesArray:
+		print(enemy)
+		nodeEnemiesArray.append(load(\"%s%s\" % [enemiesDir, enemy[\"Enemy Name\"]]))
+	print(nodeEnemiesArray)
+
+func loadWeapons():
+	return
+	nodeWeaponDropsArray = []
+	for weapon in weaponDropsArray:
+		print(weapon)
+		nodeWeaponDropsArray.append(load(\"%s%s\" % [weaponsDir, weapon[\"Weapon Name\"]]))
+		breakpoint
+
+func getRandomEnemy() -> PackedScene:
+	return nodeEnemiesArray[rand_range(0, len(nodeEnemiesArray))]
+
+func getWeightedEnemy():
+	return"
 
 [node name="World" type="Node2D"]
 
@@ -192,9 +251,6 @@ script = SubResource( 4 )
 waves = "res://Waves/waveDefault.json"
 
 [node name="Enemies" type="Node2D" parent="Game Runner"]
-
-[node name="Dum Enemy" parent="Game Runner/Enemies" instance=ExtResource( 3 )]
-position = Vector2( 558.762, 387.094 )
 
 [node name="Weapon Spawners" type="Node2D" parent="Game Runner"]
 

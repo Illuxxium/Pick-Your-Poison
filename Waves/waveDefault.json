@@ -15,13 +15,17 @@
                 }
             ],
 
-            "Weapons Drop": [{
-                "Cool Weapon": { "Weight": 1 },
-                "Even Cooler Weapon": { "Weight": 1 },
-                "Ultra Cool Weapon": { "Weight": 1 }
-            }]
+            "Weapon Drops": [{
+                    "Weapon Name": "Basic Player Weapon.tscn",
+                    "Weight": 1
+                },
+                {
+                    "Weapon Name": "Cool Player Weapon.tscn",
+                    "Weight": 1
+                }
+            ]
         },
-        "Wave1": [{
+        "Wave1": {
             "Spawn Time": 3,
             "Wave Time": 30,
             "Wave Enemies": 10,
@@ -34,17 +38,15 @@
                     "Weight": 1
                 }
             ],
-            "Weapons Drop": [{
-                "Cool Weapon": {
+            "Weapon Drops": [{
+                    "Weapon Name": "Basic Player Weapon.tscn",
                     "Weight": 1
                 },
-                "Even Cooler Weapon": {
-                    "Weight": 1
-                },
-                "Ultra Cool Weapon": {
+                {
+                    "Weapon Name": "Cool Player Weapon.tscn",
                     "Weight": 1
                 }
-            }]
-        }]
+            ]
+        }
     }
 }

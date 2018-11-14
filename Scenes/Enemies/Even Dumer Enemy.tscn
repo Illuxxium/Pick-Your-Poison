@@ -10,11 +10,8 @@
 
 script/source = "extends KinematicBody2D
 
-#warning-ignore:unused_class_variable
 export var movementSpeed: float = 300
-#warning-ignore:unused_class_variable
 var targetRotation: float
-#warning-ignore:unused_class_variable
 var tween
 
 #func _ready():
@@ -87,7 +84,6 @@ func _on_Area2D_area_entered(area: Area2D) -> void:
 
 script/source = "extends Node2D
 
-#warning-ignore:unused_argument
 func _process(delta: float) -> void:
 	global_rotation = 0"
 
@@ -98,10 +94,12 @@ script = SubResource( 1 )
 movementSpeed = null
 
 [node name="Area2D" parent="." index="3"]
+editor/display_folded = true
 collision_layer = 4
 collision_mask = 2
 
 [node name="Weapon Manager" parent="." index="4"]
+editor/display_folded = true
 mainWeapon = ExtResource( 2 )
 hasAltWeapon = false
 

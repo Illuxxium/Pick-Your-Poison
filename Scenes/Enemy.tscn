@@ -10,9 +10,9 @@
 
 script/source = "extends KinematicBody2D
 
-export var movementSpeed: float = 300
-var targetRotation: float
-var tween
+#export var movementSpeed: float = 300
+#var targetRotation: float
+#var tween
 
 #func _ready():
 #	tween = Tween.new()
@@ -150,6 +150,7 @@ func spawnWeapons():
 
 script/source = "extends Node2D
 
+#warning-ignore:unused_argument
 func _process(delta: float) -> void:
 	global_rotation = 0"
 
@@ -160,7 +161,6 @@ collision_mask = 1
 collision/safe_margin = 0.08
 motion/sync_to_physics = false
 script = SubResource( 1 )
-movementSpeed = 350.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 rotation = -3.14159

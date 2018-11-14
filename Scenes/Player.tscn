@@ -16,7 +16,7 @@ func _ready():
 	tween = Tween.new()
 	add_child(tween)
 	tween.start()
-	$Area2D/CollisionPolygon2D.disabled
+
 #warning-ignore:unused_argument
 func _physics_process(delta: float) -> void:
 	if(Input.is_key_pressed(KEY_F11) && !f11down):
@@ -31,6 +31,7 @@ func _physics_process(delta: float) -> void:
 	movementVector.x -= Input.get_action_strength(\"move_left\")
 	movementVector.x += Input.get_action_strength(\"move_right\")
 
+#warning-ignore:return_value_discarded
 	move_and_slide(movementVector.normalized() * movementSpeed)
 
 	match(Vector2(ceil(movementVector.x), ceil(movementVector.y))):
