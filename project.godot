@@ -26,7 +26,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "dialog_graph", "xphere-zone" )
+enabled=PoolStringArray( "dialog_graph", "xphere-zone", "zylann.translation_editor" )
 
 [input]
 

@@ -32,7 +32,7 @@ height = 46.5031
 
 custom_solver_bias = 0.0
 radius = 4.17164
-height = 46.0038
+height = 17.9141
 
 [node name="Laser" type="KinematicBody2D"]
 input_pickable = false

@@ -10,10 +10,7 @@ script/source = "extends KinematicBody2D
 #warning-ignore:unused_class_variable
 export(int, 0, 1000) var damage: float = 20
 export(int, 0, 1000) var speed = 200
-
-#warning-ignore:unused_argument
-func _on_Laser_body_entered(body: Node) -> void:
-	print(\"AJDIOJFOSD\") # Replace with function body.
+export var passes: int = 0
 
 #warning-ignore:unused_argument
 func _physics_process(delta: float) -> void:
@@ -21,12 +18,30 @@ func _physics_process(delta: float) -> void:
 	move_and_slide(Vector2(1, 0).rotated(deg2rad(rotation_degrees)) * speed)
 
 func _on_Timer_timeout() -> void:
-	queue_free()"
+	queue_free()
+
+func _on_Area2D_area_entered(area: Area2D) -> void:
+	if(passes <= 0):
+		queue_free()
+	else:
+		passes -= 1
+"
 
 [node name="Basic Player Laser" instance=ExtResource( 1 )]
 script = SubResource( 1 )
-speed = 200
+speed = 600
+passes = null
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
 
+[node name="CollisionShape2D" parent="." index="1"]
+self_modulate = Color( 1, 1, 1, 0 )
+
+[node name="Area2D" parent="." index="2"]
+collision_mask = 6
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+self_modulate = Color( 1, 1, 1, 0.0901961 )
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
