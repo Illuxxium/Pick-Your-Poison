@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Laser.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Graphics/PNG/Lasers/laserBlue01.png" type="Texture" id=2]
@@ -27,6 +27,55 @@ func _on_Area2D_area_entered(area: Area2D) -> void:
 		passes -= 1
 "
 
+[sub_resource type="Gradient" id=3]
+
+offsets = PoolRealArray( 0, 1 )
+colors = PoolColorArray( 0.27451, 0.752941, 0.960784, 1, 0.27451, 0.752941, 0.960784, 0.00176471 )
+
+[sub_resource type="GradientTexture" id=4]
+
+flags = 4
+gradient = SubResource( 3 )
+width = 2048
+
+[sub_resource type="ParticlesMaterial" id=2]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 90.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 3.0
+scale_random = 0.0
+color_ramp = SubResource( 4 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+
 [node name="Basic Player Laser" instance=ExtResource( 1 )]
 script = SubResource( 1 )
 speed = 600
@@ -43,5 +92,27 @@ collision_mask = 6
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 self_modulate = Color( 1, 1, 1, 0.0901961 )
+
+[node name="Particles2D" type="Particles2D" parent="." index="4"]
+position = Vector2( -13, 0 )
+rotation = 3.14159
+emitting = true
+amount = 8
+lifetime = 1.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 2 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

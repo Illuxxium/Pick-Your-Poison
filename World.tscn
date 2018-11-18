@@ -88,6 +88,9 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Particles2D" type="Particles2D" parent="."]
 visible = false
