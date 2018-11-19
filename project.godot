@@ -21,6 +21,7 @@ config/icon="res://icon.png"
 
 [debug]
 
+gdscript/completion/autocomplete_setters_and_getters=true
 gdscript/warnings/unassigned_variable=false
 gdscript/warnings/unassigned_variable_op_assign=false
 gdscript/warnings/unused_variable=false
@@ -32,6 +33,10 @@ gdscript/warnings/void_assignment=false
 
 [display]
 
+window/size/width=1920
+window/size/height=1080
+window/size/fullscreen=true
+mouse_cursor/custom_image="res://Graphics/Crosshairs/PNG/Outline Retina/crosshair038.png"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
@@ -79,5 +84,5 @@ translations=PoolStringArray( "res://Localization/localization.csv" )
 [rendering]
 
 quality/intended_usage/framebuffer_allocation=0
-quality/intended_usage/framebuffer_allocation.mobile=0
+quality/intended_usage/framebuffer_allocation.mobile=1
 quality/2d/use_pixel_snap=true

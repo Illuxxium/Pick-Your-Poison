@@ -10,3 +10,4 @@ This game uses the Godot game engine [https://godotengine.org]
 
 1. **Shooter Redux** [https://kenney.nl/assets/space-shooter-redux]
 2. **Space Shooter Extension** [https://kenney.nl/assets/space-shooter-extension]
+3. **Crosshair Pack** [https://kenney.nl/assets/crosshair-pack]
