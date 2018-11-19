@@ -19,6 +19,17 @@ config/name="Space Shi"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+gdscript/warnings/unassigned_variable=false
+gdscript/warnings/unassigned_variable_op_assign=false
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_class_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/unreachable_code=false
+gdscript/warnings/standalone_expression=false
+gdscript/warnings/void_assignment=false
+
 [display]
 
 window/stretch/mode="viewport"
@@ -67,6 +78,6 @@ translations=PoolStringArray( "res://Localization/localization.csv" )
 
 [rendering]
 
-quality/shadow_atlas/quadrant_0_subdiv=2
-quality/shadows/filter_mode=2
-quality/filters/msaa=1
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=0
+quality/2d/use_pixel_snap=true

@@ -1,10 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Scenes/Emeny Weapon.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Enemy Projectile/Dum Enemy Laser.tscn" type="PackedScene" id=2]
 
 [node name="Emeny Weapon" instance=ExtResource( 1 )]
-projectile = ExtResource( 2 )
 
 [node name="FireTimer" parent="." index="3"]
 wait_time = 0.75

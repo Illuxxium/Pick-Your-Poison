@@ -10,20 +10,22 @@ script/source = "extends KinematicBody2D
 
 export var movementSpeed: float = 300
 var targetRotation: float
-var tween
+var tween: Tween
 var f11down = false
 func _ready():
 	tween = Tween.new()
 	add_child(tween)
+#warning-ignore:return_value_discarded
 	tween.start()
 
 #warning-ignore:unused_argument
 func _physics_process(delta: float) -> void:
 	if(Input.is_key_pressed(KEY_F11) && !f11down):
-		OS.window_fullscreen = true
+		OS.window_fullscreen = !OS.window_fullscreen
 		f11down = true
 	else:
 		f11down = false
+
 	var movementVector: Vector2 = Vector2()
 
 	movementVector.y -= Input.get_action_strength(\"move_up\")
@@ -57,9 +59,9 @@ func _physics_process(delta: float) -> void:
 				targetRotation = -225
 		Vector2(0, 1):
 			if(rotation_degrees > 0):
-				targetRotation = 180
+				targetRotation = 179.999
 			else:
-				targetRotation = -180
+				targetRotation = -179.999
 		Vector2(-1, -1):
 			if(rotation_degrees > 45):
 				targetRotation = 315
@@ -76,9 +78,10 @@ func _physics_process(delta: float) -> void:
 			else:
 				targetRotation = -135
 
-#	print(targetRotation, \"    \", rotation_degrees)
-	tween.interpolate_property(self, \"rotation_degrees\", null, targetRotation, .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	rotation_degrees = fmod(rotation_degrees, 360)
+#warning-ignore:return_value_discarded
+	tween.interpolate_property(self, \"rotation_degrees\", null, targetRotation, .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#	print(rotation_degrees)
 
 func _on_Area2D_area_entered(area: Area2D) -> void:
 	print(area, \" AAAA\")
@@ -162,24 +165,24 @@ flags = 4
 gradient = SubResource( 6 )
 width = 2048
 
-[sub_resource type="Curve" id=10]
+[sub_resource type="Curve" id=8]
 
 min_value = 0.0
 max_value = 1.0
 bake_resolution = 100
 _data = [ Vector2( 0, 1 ), 0.0, 1.11089, 0, 0, Vector2( 1, 0.6936 ), -1.26948, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=11]
+[sub_resource type="CurveTexture" id=9]
 
 flags = 4
 width = 2048
-curve = SubResource( 10 )
+curve = SubResource( 8 )
 
-[sub_resource type="ParticlesMaterial" id=12]
+[sub_resource type="ParticlesMaterial" id=10]
 
 render_priority = 0
 trail_divisor = 3
-trail_size_modifier = SubResource( 11 )
+trail_size_modifier = SubResource( 9 )
 emission_shape = 2
 emission_box_extents = Vector3( 0, 2, 1 )
 flag_align_y = false
@@ -293,7 +296,7 @@ position = Vector2( 30, 10 )
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( 46.2721, 25.0127 )
 rotation = 1.5708
-emitting = true
+emitting = false
 amount = 200
 lifetime = 1.0
 one_shot = false
@@ -306,7 +309,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 12 )
+process_material = SubResource( 10 )
 texture = null
 normal_map = null
 h_frames = 1
@@ -315,7 +318,7 @@ v_frames = 1
 [node name="Particles2D2" type="Particles2D" parent="."]
 position = Vector2( -44.5969, 24.9102 )
 rotation = 1.5708
-emitting = true
+emitting = false
 amount = 200
 lifetime = 1.0
 one_shot = false
@@ -328,7 +331,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 12 )
+process_material = SubResource( 10 )
 texture = null
 normal_map = null
 h_frames = 1
