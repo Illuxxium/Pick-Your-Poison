@@ -22,6 +22,9 @@ func _ready() -> void:
 	var oof: Node2D = getRandomEnemy().instance()
 	$Enemies.add_child(oof)
 	oof.transform.origin = Vector2(200, 200)
+#	oof = getRandomEnemy().instance()
+#	$Enemies.add_child(oof)
+#	oof.transform.origin = Vector2(400, 200)
 
 func resetWaves():
 	currentWave = 0
