@@ -28,7 +28,7 @@ func _on_Area2D_area_entered(area: Area2D) -> void:
 		$Boom.emitting = true
 		print($Boom.emitting)
 		$Boom.restart()
-		add_child_below_node($\"/root/World\", ($Boom))
+		$\"/root/World\".add_child($Boom)
 #		$\"/root/\".print_tree_pretty()
 		queue_free()
 	else:
