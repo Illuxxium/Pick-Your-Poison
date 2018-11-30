@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Graphics/aaaaaaaaaa.png" type="Texture" id=1]
 
 [sub_resource type="Gradient" id=1]
 
-offsets = PoolRealArray( 0, 0.5, 1 )
-colors = PoolColorArray( 0.820313, 0.273871, 0.166626, 1, 0.905477, 0.499537, 0.0876522, 0.526042, 0.0976562, 0.052546, 0, 0 )
+offsets = PoolRealArray( 0.008, 0.5, 0.984 )
+colors = PoolColorArray( 0.819608, 0.27451, 0.164706, 1, 0.819608, 0.27451, 0.164706, 0.423529, 0.0980392, 0.0509804, 0, 0 )
 
 [sub_resource type="GradientTexture" id=2]
 
@@ -53,11 +55,11 @@ damping = 0.0
 damping_random = 0.0
 angle = 0.0
 angle_random = 0.0
-scale = 5.0
+scale = 0.15
 scale_random = 1.0
 color_ramp = SubResource( 2 )
 hue_variation = -0.2
-hue_variation_random = 0.5
+hue_variation_random = 0.68
 anim_speed = 0.0
 anim_speed_random = 0.0
 anim_offset = 0.0
@@ -81,7 +83,7 @@ visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
 process_material = SubResource( 5 )
-texture = null
+texture = ExtResource( 1 )
 normal_map = null
 h_frames = 1
 v_frames = 1

@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Graphics/PNG/playerShip1_blue.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player Weapons/Basic Player Weapon.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player Weapons/Alt Player Weapon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Exhaust.tscn" type="PackedScene" id=4]
 
 [sub_resource type="GDScript" id=1]
 
@@ -105,54 +106,6 @@ resource_name = "Running Exhaust"
 length = 0.001
 loop = true
 step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Exhaust/Particles2D:amount")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 300 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Exhaust/Particles2D:process_material:initial_velocity")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 90.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Exhaust/Particles2D2:amount")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 300 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Exhaust/Particles2D2:process_material:initial_velocity")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 90.0 ]
-}
 
 [sub_resource type="Animation" id=4]
 
@@ -160,54 +113,6 @@ resource_name = "Stopped Exhaust"
 length = 0.001
 loop = true
 step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Exhaust/Particles2D2:amount")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 120 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Exhaust/Particles2D2:process_material:initial_velocity")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 45.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Exhaust/Particles2D:amount")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 120 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Exhaust/Particles2D:process_material:initial_velocity")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 45.0 ]
-}
 
 [sub_resource type="AnimationNodeAnimation" id=5]
 
@@ -313,70 +218,6 @@ func _ready() -> void:
 	for node in nodes:
 		node.emitting = true"
 
-[sub_resource type="Gradient" id=13]
-
-offsets = PoolRealArray( 0, 0.5, 1 )
-colors = PoolColorArray( 0.820313, 0.273871, 0.166626, 1, 0.905477, 0.499537, 0.0876522, 0.526042, 0, 0, 0, 0 )
-
-[sub_resource type="GradientTexture" id=14]
-
-flags = 4
-gradient = SubResource( 13 )
-width = 2048
-
-[sub_resource type="Curve" id=15]
-
-min_value = 0.0
-max_value = 1.0
-bake_resolution = 100
-_data = [ Vector2( 0, 1 ), 0.0, 1.11089, 0, 0, Vector2( 1, 0.6936 ), -1.26948, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=16]
-
-flags = 4
-width = 2048
-curve = SubResource( 15 )
-
-[sub_resource type="ParticlesMaterial" id=17]
-
-render_priority = 0
-trail_divisor = 3
-trail_size_modifier = SubResource( 16 )
-emission_shape = 2
-emission_box_extents = Vector3( 0, 2, 1 )
-flag_align_y = false
-flag_rotate_y = false
-flag_disable_z = true
-spread = 10.0
-flatness = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 45.0
-initial_velocity_random = 0.0
-angular_velocity = 0.0
-angular_velocity_random = 0.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = 0.0
-linear_accel_random = 0.0
-radial_accel = 0.0
-radial_accel_random = 0.0
-tangential_accel = 0.0
-tangential_accel_random = 0.0
-damping = 0.0
-damping_random = 0.0
-angle = 0.0
-angle_random = 0.0
-scale = 5.0
-scale_random = 1.0
-color_ramp = SubResource( 14 )
-hue_variation = -0.2
-hue_variation_random = 0.5
-anim_speed = 0.0
-anim_speed_random = 0.0
-anim_offset = 0.0
-anim_offset_random = 0.0
-anim_loop = false
-
 [node name="Player" type="KinematicBody2D"]
 input_pickable = false
 collision_layer = 1
@@ -466,48 +307,9 @@ position = Vector2( 30, 10 )
 [node name="Exhaust" type="Node2D" parent="."]
 script = SubResource( 12 )
 
-[node name="Particles2D" type="Particles2D" parent="Exhaust"]
-position = Vector2( 46.2721, 25.0127 )
-rotation = 1.5708
-emitting = false
-amount = 120
-lifetime = 1.0
-one_shot = false
-preprocess = 2.0
-speed_scale = 1.0
-explosiveness = 0.0
-randomness = 0.0
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -25.0125, -17.0692, 114.959, 63.3414 )
-local_coords = false
-draw_order = 0
-process_material = SubResource( 17 )
-texture = null
-normal_map = null
-h_frames = 1
-v_frames = 1
+[node name="Particles2D" parent="Exhaust" instance=ExtResource( 4 )]
 
-[node name="Particles2D2" type="Particles2D" parent="Exhaust"]
-position = Vector2( -44.5969, 24.9102 )
-rotation = 1.5708
-emitting = false
-amount = 120
-lifetime = 1.0
-one_shot = false
-preprocess = 0.0
-speed_scale = 1.0
-explosiveness = 0.0
-randomness = 0.0
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -24.9104, -44.5968, 114.901, 62.02 )
-local_coords = false
-draw_order = 0
-process_material = SubResource( 17 )
-texture = null
-normal_map = null
-h_frames = 1
-v_frames = 1
+[node name="Particles2D2" parent="Exhaust" instance=ExtResource( 4 )]
+position = Vector2( -45, 25 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
